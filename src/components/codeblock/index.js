@@ -14,20 +14,29 @@ const CodeBlock = () => {
   };
 
   const evaluate = async function () {
-    console.log(block.code);
-    const response = await fetch("http://localhost:3000/run", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        code: block.code,
-        data: "string",
-      }),
-    });
+    // const response = await fetch("http://localhost:3000/run", {
+    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     code: block.code,
+    //     data: "string",
+    //   }),
+    // });
 
-    let data = await response.json();
-    showOutput(data.data);
+    // let data = await response.json();
+    // showOutput(data.data);
+
+    try {
+      console.log = function (value) {
+        return value;
+      };
+      let output = eval(block.code);
+      showOutput(output);
+    } catch (err) {
+      showOutput(String(err));
+    }
   };
 
   return (
@@ -42,7 +51,6 @@ const CodeBlock = () => {
           className="codeblock__code language-js"
           onChange={handleCodeChange}
           role="textarea"
-          contentEditable
         ></textarea>
       </div>
       <div className="output">
