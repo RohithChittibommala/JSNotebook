@@ -38,6 +38,15 @@ const CodeBlock = () => {
       showOutput(String(err));
     }
   };
+  const handleKeyDown = (e) => {
+    if (e.keyCode !== 13) return;
+    const textArea = document.getElementById("firstCodeBlock");
+    let height = textArea.getAttribute("localheight");
+    textArea.style.height = `${height + 0.1}px`;
+    height = parseInt(height) + 1;
+    console.log(height);
+    textArea.setAttribute("localheight", parseInt(height) + 1);
+  };
 
   return (
     <div className="codeblock">
@@ -47,9 +56,12 @@ const CodeBlock = () => {
         </div>
         <textarea
           name="codeblock"
+          id={"firstCodeBlock"}
           value={block.code}
+          onKeyDown={(e) => handleKeyDown(e)}
           className="codeblock__code language-js"
           onChange={handleCodeChange}
+          localheight={2}
           role="textarea"
           contentEditable={true}
           suppressContentEditableWarning={true}
