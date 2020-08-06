@@ -51,6 +51,8 @@ const CodeBlock = () => {
           className="codeblock__code language-js"
           onChange={handleCodeChange}
           role="textarea"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
         ></textarea>
       </div>
       <div className="output">
