@@ -1,5 +1,8 @@
 .btn-execute {
   // border-radius: 100px;
+  position: absolute;
+  top: 8px;
+  left: -10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,7 +10,7 @@
   margin: 0.5rem;
   outline: none;
   margin-left: 50px;
-  margin-right: 10px;
+  // margin-right: 10px;
   cursor: pointer;
   border: none;
 }

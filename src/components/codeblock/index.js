@@ -12,7 +12,23 @@ const CodeBlock = () => {
   const showOutput = (output) => {
     setBlock({ ...block, output: output });
   };
-
+  function handleEnterKeyDown(e) {
+    const textArea = e.target;
+    let height = textArea.getAttribute("localheight");
+    textArea.style.height = `${height + 0.2}px`;
+    height = parseInt(height);
+    console.log(height);
+    textArea.setAttribute("localheight", parseInt(height) + 1);
+  }
+  function handleBackSpaceKeyDown(e) {
+    const textArea = e.target;
+    let height = textArea.getAttribute("localheight");
+    const num = parseInt(height);
+    if (num < 0) return;
+    console.log(num);
+    textArea.style.height = `${height - 0.1}px`;
+    textArea.setAttribute("localheight", parseInt(height) - 1);
+  }
   const evaluate = async function () {
     // const response = await fetch("http://localhost:3000/run", {
     //   method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -39,13 +55,10 @@ const CodeBlock = () => {
     }
   };
   const handleKeyDown = (e) => {
-    if (e.keyCode !== 13) return;
-    const textArea = document.getElementById("firstCodeBlock");
-    let height = textArea.getAttribute("localheight");
-    textArea.style.height = `${height + 0.1}px`;
-    height = parseInt(height) + 1;
-    console.log(height);
-    textArea.setAttribute("localheight", parseInt(height) + 1);
+    if (e.keyCode === 13) handleEnterKeyDown(e);
+    else if (e.keyCode === 8) handleBackSpaceKeyDown(e);
+
+    // e.keyCode === 8 && console.log("Backspace is pressed");
   };
 
   return (
@@ -56,7 +69,6 @@ const CodeBlock = () => {
         </div>
         <textarea
           name="codeblock"
-          id={"firstCodeBlock"}
           value={block.code}
           onKeyDown={(e) => handleKeyDown(e)}
           className="codeblock__code language-js"
