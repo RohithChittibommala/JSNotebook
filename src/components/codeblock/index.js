@@ -15,10 +15,11 @@ const CodeBlock = () => {
   function handleEnterKeyDown(e) {
     const textArea = e.target;
     let height = textArea.getAttribute("localheight");
-    textArea.style.height = `${height + 0.2}px`;
-    height = parseInt(height);
     console.log(height);
-    textArea.setAttribute("localheight", parseInt(height) + 1);
+    textArea.style.height = `${parseFloat(height) + 1}rem`;
+    height = parseFloat(height);
+    console.log(height);
+    textArea.setAttribute("localheight", parseFloat(height) + 1);
   }
   function handleBackSpaceKeyDown(e) {
     const textArea = e.target;
@@ -30,20 +31,6 @@ const CodeBlock = () => {
     textArea.setAttribute("localheight", parseInt(height) - 1);
   }
   const evaluate = async function () {
-    // const response = await fetch("http://localhost:3000/run", {
-    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     code: block.code,
-    //     data: "string",
-    //   }),
-    // });
-
-    // let data = await response.json();
-    // showOutput(data.data);
-
     try {
       console.log = function (value) {
         return value;
@@ -73,7 +60,7 @@ const CodeBlock = () => {
           onKeyDown={(e) => handleKeyDown(e)}
           className="codeblock__code language-js"
           onChange={handleCodeChange}
-          localheight={2}
+          localheight={1}
           role="textarea"
           contentEditable={true}
           suppressContentEditableWarning={true}
