@@ -2,6 +2,7 @@
 .code {
   display: grid;
   grid-template-columns: 0.5fr 11.5fr;
+  max-width: 90vw;
 }
 
 .cell-execution-container {
@@ -15,7 +16,6 @@
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  padding: 1em;
   width: 100%;
   position: relative;
   border-radius: 10px;
@@ -31,10 +31,14 @@
   border: 0.25px rgb(186, 227, 243) solid;
   font-family: "consolas", sans-serif;
   overflow: auto;
-  font-size: 18px;
   padding: 0.8rem;
   width: 88%;
   outline: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .codeblock__output {
