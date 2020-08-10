@@ -1,18 +1,21 @@
 .btn-execute {
-  // border-radius: 100px;
   position: absolute;
   top: 8px;
-  left: -10px;
+  left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   margin: 0.5rem;
   outline: none;
-  margin-left: 50px;
+  // margin-left: 50px;
   // margin-right: 10px;
   cursor: pointer;
+  transition: 500ms;
   border: none;
+  &:hover {
+    background-color: #948b8b;
+  }
 }
 
 .fas {

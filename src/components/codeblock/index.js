@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExecuteButton from "../executebutton";
 import "./codeblock.scss";
+import Buttonp from "../buttons/optionsButton.jsx";
 
 const CodeBlock = () => {
   const [block, setBlock] = useState({ code: "", output: "" });
@@ -15,35 +16,18 @@ const CodeBlock = () => {
   function handleEnterKeyDown(e) {
     const textArea = e.target;
     let height = textArea.getAttribute("localheight");
-    textArea.style.height = `${height + 0.2}px`;
-    height = parseInt(height);
-    console.log(height);
-    textArea.setAttribute("localheight", parseInt(height) + 1);
+    const num = parseInt(height);
+    textArea.style.height = `${num + 20}px`;
+    textArea.setAttribute("localheight", num + 10);
   }
   function handleBackSpaceKeyDown(e) {
     const textArea = e.target;
     let height = textArea.getAttribute("localheight");
     const num = parseInt(height);
-    if (num < 0) return;
-    console.log(num);
-    textArea.style.height = `${height - 0.1}px`;
-    textArea.setAttribute("localheight", parseInt(height) - 1);
+    textArea.style.height = `${num - 10}px`;
+    textArea.setAttribute("localheight", num - 10);
   }
   const evaluate = async function () {
-    // const response = await fetch("http://localhost:3000/run", {
-    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     code: block.code,
-    //     data: "string",
-    //   }),
-    // });
-
-    // let data = await response.json();
-    // showOutput(data.data);
-
     try {
       console.log = function (value) {
         return value;
@@ -73,11 +57,12 @@ const CodeBlock = () => {
           onKeyDown={(e) => handleKeyDown(e)}
           className="codeblock__code language-js"
           onChange={handleCodeChange}
-          localheight={2}
+          localheight={20}
           role="textarea"
           contentEditable={true}
           suppressContentEditableWarning={true}
         ></textarea>
+        <Buttonp></Buttonp>
       </div>
       <div className="output">
         <div className="output-info"></div>
